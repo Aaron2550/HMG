@@ -19,3 +19,17 @@ C++ **H**eight **M**ap **G**enerator using FastNoise2 and OpenCL
 - [libpng](https://github.com/glennrp/libpng)
 - [zlib](https://github.com/madler/zlib)
 - [OpenCL SDK](https://github.com/KhronosGroup/OpenCL-SDK)
+
+## Compilation
+1. Create and Enter the Build Directory
+```bash
+mkdir build && cd build
+```
+2. Generate Makefile and Compile the Code
+```bash
+cmake .. && make
+```
+3. Run Executable
+```bash
+./HMG
+```
