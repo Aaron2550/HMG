@@ -1,0 +1,12 @@
+[submodule "lib/FastNoise2"]
+	path = lib/FastNoise2
+	url = https://github.com/Auburn/FastNoise2
+[submodule "lib/libpng"]
+	path = lib/libpng
+	url = https://github.com/glennrp/libpng
+[submodule "lib/zlib"]
+	path = lib/zlib
+	url = https://github.com/madler/zlib
+[submodule "lib/opencl"]
+	path = lib/opencl
+	url = https://github.com/KhronosGroup/OpenCL-SDK
