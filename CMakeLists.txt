@@ -23,9 +23,9 @@ include_directories(lib/FastNoise2/include)
 include_directories(lib/libpng)
 include_directories(lib/zlib)
 
-include_directories(lib/opencla/include/api)
-include_directories(lib/opencla/include/cpp)
-include_directories(lib/opencla/include/utils)
+#include_directories(lib/opencla/include/api)
+#include_directories(lib/opencla/include/cpp)
+#include_directories(lib/opencla/include/utils)
 
 
 
@@ -33,4 +33,5 @@ add_executable(HMG src/main.cpp)
 
 
 
-target_link_libraries(HMG FastNoise2 png_static zlibstatic OpenCLHeaders OpenCLICDLoader OpenCLHeadersCpp)
+#target_link_libraries(HMG FastNoise2 png_static zlibstatic OpenCLHeaders OpenCLICDLoader OpenCLHeadersCpp)
+target_link_libraries(HMG FastNoise2 png_static zlibstatic)
