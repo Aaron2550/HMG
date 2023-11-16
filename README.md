@@ -19,6 +19,7 @@ C++ **H**eight **M**ap **G**enerator using FastNoise2 and OpenCL
 - [libpng](https://github.com/glennrp/libpng)
 - [zlib](https://github.com/madler/zlib)
 - [OpenCL SDK](https://github.com/KhronosGroup/OpenCL-SDK)
+- [cxxopts](https://github.com/jarro2783/cxxopts)
 
 ## Compilation
 1. Create and Enter the Build Directory
@@ -31,5 +32,16 @@ cmake .. && make
 ```
 3. Run Executable
 ```bash
-./HMG
+./HMG -h
+Height Map Generator
+Usage:
+  HMG [OPTION...]
+
+  -x, --width arg      HeightMap Width in Pixels (default: 4096)
+  -y, --height arg     HeightMap Height in Pixels (default: 4096)
+  -f, --frequency arg  FastNoise2 Frequency (default: 0.001)
+  -s, --seed arg       FastNoise2 Seed (default: 1337)
+  -n, --node arg       FastNoise2 Encoded Node String to use
+  -o, --output arg     Output PNG File (default: noise.png)
+  -h, --help           Print usage
 ```
