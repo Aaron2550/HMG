@@ -16,6 +16,8 @@ add_subdirectory(lib/FastNoise2)
 add_subdirectory(lib/libpng)
 add_subdirectory(lib/zlib)
 
+add_subdirectory(lib/cxxopts)
+
 
 
 include_directories(lib/FastNoise2/include)
@@ -34,4 +36,4 @@ add_executable(HMG src/main.cpp)
 
 
 #target_link_libraries(HMG FastNoise2 png_static zlibstatic OpenCLHeaders OpenCLICDLoader OpenCLHeadersCpp)
-target_link_libraries(HMG FastNoise2 png_static zlibstatic)
+target_link_libraries(HMG FastNoise2 png_static zlibstatic cxxopts)

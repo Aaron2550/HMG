@@ -9,24 +9,51 @@
 
 #include <png.h>
 
-//TODO: Make this configurable
-const int WIDTH = 4096;
-const int HEIGHT = 4096;
+#include <cxxopts.hpp>
 
-int main() {
-  //Set up simple Fractal Noise
-  auto fnSimplex = FastNoise::New<FastNoise::Simplex>();
-  auto fnFractal = FastNoise::New<FastNoise::FractalFBm>();
 
-  fnFractal->SetSource(fnSimplex);
-  fnFractal->SetOctaveCount(5);
+int main(int argc, char** argv) {
+  cxxopts::Options options("HMG", "Height Map Generator");
 
-  std::vector<float> noiseValues(WIDTH * HEIGHT);
-  std::vector<uint16_t> imagePixels(WIDTH * HEIGHT);
+  options.add_options()
+    ("x,width", "HeightMap Width in Pixels", cxxopts::value<int>()->default_value("4096"))
+	("y,height", "HeightMap Height in Pixels", cxxopts::value<int>()->default_value("4096"))
+	("f,frequency", "FastNoise2 Frequency", cxxopts::value<float>()->default_value("0.001"))
+	("s,seed", "FastNoise2 Seed", cxxopts::value<int>()->default_value("1337"))
+	("n,node", "FastNoise2 Encoded Node String to use", cxxopts::value<std::string>())
+	("o,output", "Output PNG File", cxxopts::value<std::string>()->default_value("noise.png"))
+    ("h,help", "Print usage")
+  ;
 
-  fnFractal->GenUniformGrid2D(noiseValues.data(), 0, 0, WIDTH, HEIGHT, 0.001f, 1337);
+  auto result = options.parse(argc, argv);
+  
+  if (result.count("help")) {
+    std::cout << options.help() << std::endl;
+    exit(0);
+  }
+  
+  int width = result["width"].as<int>();
+  int height = result["height"].as<int>();
+  
+  std::vector<float> noiseValues(width * height);
+  std::vector<uint16_t> imagePixels(width * height);
+  
+  if (result.count("node")) {
+    FastNoise::SmartNode<> fnGenerator = FastNoise::NewFromEncodedNodeTree(result["node"].as<std::string>().c_str());
+    fnGenerator->GenUniformGrid2D(noiseValues.data(), 0, 0, width, height, result["frequency"].as<float>(), result["seed"].as<int>());
+	
+  } else {
+	//Set up simple Fractal Noise
+    auto fnSimplex = FastNoise::New<FastNoise::Simplex>();
+    auto fnFractal = FastNoise::New<FastNoise::FractalFBm>();
 
-  for (int index = 0; index < HEIGHT * WIDTH; index++) {
+    fnFractal->SetSource(fnSimplex);
+    fnFractal->SetOctaveCount(5);
+
+    fnFractal->GenUniformGrid2D(noiseValues.data(), 0, 0, width, height, result["frequency"].as<float>(), result["seed"].as<int>());  
+  }
+
+  for (int index = 0; index < height * width; index++) {
     double value = static_cast<double>(noiseValues[index]);
 
     //Normalize from Range (-1 to +1) to (0 to +1)
@@ -44,9 +71,9 @@ int main() {
   }
 
   //Create or Overwrite File
-  FILE * filePointer = fopen("noise.png", "wb");
+  FILE * filePointer = fopen(result["output"].as<std::string>().c_str(), "wb");
   if (!filePointer) {
-    std::cerr << "Cannot open 'noise.png' for writing." << std::endl;
+    std::cerr << "Cannot open " << result["output"].as<std::string>() << " for writing." << std::endl;
 
     return 1;
   }
@@ -80,7 +107,7 @@ int main() {
   png_init_io(pngStructure, filePointer);
 
   //Write PNG Header (16 Bit Grayscale)
-  png_set_IHDR(pngStructure, infoStructure, WIDTH, HEIGHT, 16, PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+  png_set_IHDR(pngStructure, infoStructure, width, height, 16, PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
   png_write_info(pngStructure, infoStructure);
   
@@ -88,8 +115,8 @@ int main() {
   png_set_swap(pngStructure);
 
   //Write image data
-  for (int y = 0; y < HEIGHT; y++) {
-    png_write_row(pngStructure, (png_const_bytep) &imagePixels[y * WIDTH]);
+  for (int y = 0; y < height; y++) {
+    png_write_row(pngStructure, (png_const_bytep) &imagePixels[y * width]);
   }
 
   //End Write

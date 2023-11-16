@@ -10,3 +10,6 @@
 [submodule "lib/opencl"]
 	path = lib/opencl
 	url = https://github.com/KhronosGroup/OpenCL-SDK
+[submodule "lib/cxxopts"]
+	path = lib/cxxopts
+	url = https://github.com/jarro2783/cxxopts
