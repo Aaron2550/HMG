@@ -3,7 +3,7 @@ C++ **H**eight **M**ap **G**enerator using FastNoise2 and OpenCL
 
 ## Roadmap
 - [x] Fractal Noise Generation with FastNoise2
-- [ ] Make Values like Width, Height, Seed and others Configurable
+- [x] Make Values like Width, Height, Seed and others Configurable
 - [ ] Fade out towards Edges of the Heightmap, filling the Borders with 'Ocean'
 - [ ] Implement Hydraulic Erosion using OpenCL
 
