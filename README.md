@@ -1,5 +1,9 @@
 # HMG
-C++ **H**eight **M**ap **G**enerator using FastNoise2 and OpenCL
+C++ **H**eight **M**ap **G**enerator using FastNoise2 and OpenCL.</br>
+HMG generates 16 Bit Grayscale HeightMaps, which you can use to generate Worlds in for example WorldPainter:
+<details>
+  <img src="wpex.png" width="512"/>
+</details>
 
 ## Roadmap
 - [x] Fractal Noise Generation with FastNoise2
@@ -8,7 +12,6 @@ C++ **H**eight **M**ap **G**enerator using FastNoise2 and OpenCL
 - [ ] Implement Hydraulic Erosion using OpenCL
 
 ## Hydraulic Erosion Info
-
 - ['Simulating hydraulic erosion' by Job Talle](https://jobtalle.com/simulating_hydraulic_erosion.html)
 - [Hydraulic erosion in Unity by Sebastian Lague](https://www.youtube.com/watch?v=eaXk97ujbPQ)
 - ['Fast Hydraulic Erosion Simulation and Visualization on GPU' by Xing Mei, Philippe Decaudin and Bao-Gang Hu](https://xing-mei.github.io/files/erosion.pdf)
