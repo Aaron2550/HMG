@@ -17,11 +17,11 @@ int main(int argc, char** argv) {
 
   options.add_options()
     ("x,width", "HeightMap Width in Pixels", cxxopts::value<int>()->default_value("4096"))
-	("y,height", "HeightMap Height in Pixels", cxxopts::value<int>()->default_value("4096"))
-	("f,frequency", "FastNoise2 Frequency", cxxopts::value<float>()->default_value("0.001"))
-	("s,seed", "FastNoise2 Seed", cxxopts::value<int>()->default_value("1337"))
-	("n,node", "FastNoise2 Encoded Node String to use", cxxopts::value<std::string>())
-	("o,output", "Output PNG File", cxxopts::value<std::string>()->default_value("noise.png"))
+    ("y,height", "HeightMap Height in Pixels", cxxopts::value<int>()->default_value("4096"))
+    ("f,frequency", "FastNoise2 Frequency", cxxopts::value<float>()->default_value("0.001"))
+    ("s,seed", "FastNoise2 Seed", cxxopts::value<int>()->default_value("1337"))
+    ("n,node", "FastNoise2 Encoded Node String to use", cxxopts::value<std::string>())
+    ("o,output", "Output PNG File", cxxopts::value<std::string>()->default_value("noise.png"))
     ("h,help", "Print usage")
   ;
 
@@ -59,9 +59,6 @@ int main(int argc, char** argv) {
     //Normalize from Range (-1 to +1) to (0 to +1)
     value *= 0.5d;
     value += 0.5d;
-
-    //Raise to Power because it looks good imo
-    value = pow(value, 1.3d);
 
     //Multiply by 65535 so we get Values from 0 to 255, the uint8 Max Value
     value *= 65535.0d;
