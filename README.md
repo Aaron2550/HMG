@@ -25,15 +25,19 @@ HMG generates 16 Bit Grayscale HeightMaps, which you can use to generate Worlds 
 - [cxxopts](https://github.com/jarro2783/cxxopts)
 
 ## Compilation
-1. Create and Enter the Build Directory
+1. Clone the Repo with Submodules and Enter the Directory
+```bash
+git clone --recurse-submodules https://github.com/Aaron2550/HMG.git && cd HMG
+```
+2. Create and Enter the Build Directory
 ```bash
 mkdir build && cd build
 ```
-2. Generate Makefile and Compile the Code
+3. Generate Makefile and Compile the Code
 ```bash
 cmake .. && make
 ```
-3. Run Executable
+4. Run Executable
 ```bash
 ./HMG -h
 Height Map Generator
