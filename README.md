@@ -9,11 +9,12 @@ HMG generates 16 Bit Grayscale HeightMaps, which you can use to generate Worlds 
 - [x] Fractal Noise Generation with FastNoise2
 - [x] Make Values like Width, Height, Seed and others Configurable
 - [ ] Fade out towards Edges of the Heightmap, filling the Borders with 'Ocean'
+- [ ] Implement Hydraulic Erosion on the CPU
 - [ ] Implement Hydraulic Erosion using OpenCL
 
 ## Hydraulic Erosion Info
 - ['Simulating hydraulic erosion' by Job Talle](https://jobtalle.com/simulating_hydraulic_erosion.html)
-- [Hydraulic erosion in Unity by Sebastian Lague](https://www.youtube.com/watch?v=eaXk97ujbPQ)
+- ['Hydraulic erosion in Unity' by Sebastian Lague](https://www.youtube.com/watch?v=eaXk97ujbPQ)
 - ['Fast Hydraulic Erosion Simulation and Visualization on GPU' by Xing Mei, Philippe Decaudin and Bao-Gang Hu](https://xing-mei.github.io/files/erosion.pdf)
 - ['Implementation of a method for hydraulic erosion' by Hans Theobald Beyer](https://www.firespark.de/resources/downloads/implementation%20of%20a%20methode%20for%20hydraulic%20erosion.pdf)
 
